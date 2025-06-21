@@ -213,8 +213,8 @@ const Home = () => {
         security: Math.random() > 0.02,
         container: true, // Add container health check
         runtime: {
-          memory: performance.memory
-            ? Math.round(performance.memory.usedJSHeapSize / 1024 / 1024)
+          memory: (performance as any).memory
+            ? Math.round((performance as any).memory.usedJSHeapSize / 1024 / 1024)
             : "unknown",
           timestamp: Date.now(),
         },
@@ -387,7 +387,6 @@ const Home = () => {
                       {module.status}
                     </Badge>
                     <Switch
-                      size="sm"
                       checked={module.status === "active"}
                       onCheckedChange={() => handleModuleToggle(module.id)}
                     />
@@ -601,6 +600,7 @@ const Home = () => {
                       status: selectedSystem.status,
                       lastSync: selectedSystem.lastSync,
                       apiCalls: selectedSystem.apiCalls,
+                      isDemo: true,
                     }}
                     aiEnabled={aiEnabled}
                   />

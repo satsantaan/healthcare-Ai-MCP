@@ -26,6 +26,7 @@ interface EMRWorkspaceProps {
     status: string;
     lastSync: string;
     apiCalls: number;
+    isDemo?: boolean;
   };
   aiEnabled?: boolean;
 }
@@ -38,6 +39,7 @@ const EMRWorkspace = ({
     status: "active",
     lastSync: "2024-01-15 14:32:15",
     apiCalls: 45200,
+    isDemo: true,
   },
   aiEnabled = true,
 }: EMRWorkspaceProps) => {
