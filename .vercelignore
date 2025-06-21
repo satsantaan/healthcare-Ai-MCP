@@ -96,3 +96,49 @@ coverage/
 # Misc
 *.tsbuildinfo
 .eslintcache
+
+# Healthcare AI specific
+data/
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# AI Model files (large files)
+models/
+*.tar
+*.gguf
+*.bin
+*.safetensors
+.ollama/
+
+# Healthcare data (HIPAA compliance)
+phi_data/
+patient_data/
+medical_records/
+hipaa_logs/
+audit_reports/
+compliance_reports/
+
+# Test reports and logs
+health-report.json
+local-model-test-report.json
+air-gapped-deployment/
+*.sha256
+
+# SSL certificates and keys
+*.pem
+*.key
+*.crt
+*.csr
+
+# Deployment scripts
+prepare-git-deployment.sh
+push-to-github.sh
+
+# Local development
+.local/
+local/
+scratch/
+playground/
+experiments/

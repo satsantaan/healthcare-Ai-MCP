@@ -6,14 +6,27 @@
   "installCommand": "npm ci",
   "framework": "vite",
   "functions": {
-    "app/api/**/*.js": {
-      "runtime": "nodejs18.x"
+    "api/**/*.js": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 30
+    },
+    "server.js": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 30
+    },
+    "simple-server.js": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 30
     }
   },
   "rewrites": [
     {
       "source": "/api/(.*)",
       "destination": "/api/$1"
+    },
+    {
+      "source": "/health",
+      "destination": "/api/health"
     },
     {
       "source": "/((?!api).*)",
@@ -58,13 +71,20 @@
   ],
   "env": {
     "NODE_VERSION": "18",
+    "NODE_ENV": "production",
     "VITE_TEMPO": "false",
-    "NODE_ENV": "production"
+    "VITE_API_BASE_URL": "https://your-app.vercel.app/api",
+    "PORT": "3001",
+    "FRONTEND_URL": "https://your-app.vercel.app",
+    "DATABASE_URL": "./data/mcp_server.db",
+    "HIPAA_MODE": "true",
+    "LOCAL_MODELS_ENABLED": "false"
   },
   "build": {
     "env": {
+      "NODE_ENV": "production",
       "VITE_TEMPO": "false",
-      "NODE_ENV": "production"
+      "VITE_API_BASE_URL": "https://your-app.vercel.app/api"
     }
   }
 }
