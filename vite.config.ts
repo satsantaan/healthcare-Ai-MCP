@@ -5,14 +5,25 @@ import { tempo } from "tempo-devtools/dist/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: process.env.NODE_ENV === "development" ? "/" : process.env.VITE_BASE_PATH || "/",
+  base: "/",
+  build: {
+    outDir: "dist",
+    sourcemap: false,
+    minify: "terser",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          ui: ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu"],
+        },
+      },
+    },
+  },
   optimizeDeps: {
     entries: ["src/main.tsx", "src/tempobook/**/*"],
+    include: ["react", "react-dom", "react-router-dom"],
   },
-  plugins: [
-    react(),
-    tempo(),
-  ],
+  plugins: [react(), tempo()],
   resolve: {
     preserveSymlinks: true,
     alias: {
@@ -20,7 +31,12 @@ export default defineConfig({
     },
   },
   server: {
-    // @ts-ignore
+    host: true,
+    port: 3000,
     allowedHosts: true,
-  }
+  },
+  preview: {
+    port: 3000,
+    host: true,
+  },
 });

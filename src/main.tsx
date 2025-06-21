@@ -3,16 +3,53 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
+import { ApiProvider } from "./contexts/ApiContext";
+import { setupGlobalErrorHandler } from "./utils/errorHandler";
 
-import { TempoDevtools } from "tempo-devtools";
-TempoDevtools.init();
+// Conditional Tempo initialization - only in development
+try {
+  if (import.meta.env.VITE_TEMPO === "true" && import.meta.env.DEV) {
+    const { TempoDevtools } = await import("tempo-devtools");
+    TempoDevtools.init();
+  }
+} catch (error) {
+  console.log("Tempo devtools not available in production");
+}
 
-const basename = import.meta.env.BASE_URL;
+// Setup global error handling
+setupGlobalErrorHandler();
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <BrowserRouter basename={basename}>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
-);
+// Ensure root element exists
+const rootElement = document.getElementById("root");
+if (!rootElement) {
+  throw new Error("Root element not found");
+}
+
+const basename = import.meta.env.BASE_URL || "/";
+
+// Production-safe rendering
+const renderApp = () => {
+  try {
+    ReactDOM.createRoot(rootElement).render(
+      <React.StrictMode>
+        <ApiProvider>
+          <BrowserRouter basename={basename}>
+            <App />
+          </BrowserRouter>
+        </ApiProvider>
+      </React.StrictMode>,
+    );
+  } catch (error) {
+    console.error("Failed to render app:", error);
+    // Fallback rendering without StrictMode
+    ReactDOM.createRoot(rootElement).render(
+      <ApiProvider>
+        <BrowserRouter basename={basename}>
+          <App />
+        </BrowserRouter>
+      </ApiProvider>,
+    );
+  }
+};
+
+renderApp();

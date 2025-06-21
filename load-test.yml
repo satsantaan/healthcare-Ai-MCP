@@ -1,0 +1,45 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 60
+      arrivalRate: 10
+    - duration: 120
+      arrivalRate: 20
+    - duration: 60
+      arrivalRate: 5
+  defaults:
+    headers:
+      Content-Type: 'application/json'
+
+scenarios:
+  - name: "Health Check Load Test"
+    weight: 30
+    flow:
+      - get:
+          url: "/health"
+          expect:
+            - statusCode: 200
+
+  - name: "Home Page Load Test"
+    weight: 50
+    flow:
+      - get:
+          url: "/"
+          expect:
+            - statusCode: 200
+
+  - name: "API Endpoints Load Test"
+    weight: 20
+    flow:
+      - get:
+          url: "/api/system/health"
+          expect:
+            - statusCode: [200, 404]
+      - get:
+          url: "/api/emr/status"
+          expect:
+            - statusCode: [200, 404]
+      - get:
+          url: "/api/mcp/health"
+          expect:
+            - statusCode: [200, 404]
