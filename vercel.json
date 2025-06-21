@@ -7,23 +7,10 @@
   "framework": "vite",
   "functions": {
     "api/**/*.js": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 30
-    },
-    "server.js": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 30
-    },
-    "simple-server.js": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 30
+      "runtime": "@vercel/node"
     }
   },
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
     {
       "source": "/health",
       "destination": "/api/health"
