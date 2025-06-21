@@ -4,8 +4,22 @@
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org/)
 [![HIPAA](https://img.shields.io/badge/HIPAA-Compliant-blue.svg)](https://www.hhs.gov/hipaa/)
 [![Local AI](https://img.shields.io/badge/Local%20AI-Supported-purple.svg)](https://ollama.ai/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Available-brightgreen.svg)](https://aimc-nu.vercel.app)
+
+**🌐 Live Demo**: [https://aimc-nu.vercel.app](https://aimc-nu.vercel.app)
 
 A comprehensive AI-powered Model Context Protocol (MCP) server designed specifically for healthcare organizations, providing secure, HIPAA-compliant AI processing for Electronic Medical Records (EMR) and Hospital Information Systems (HIS) with both cloud-based and local AI model support for complete data sovereignty.
+
+## 📋 **Business Strategy & Launch Documents**
+
+This repository includes comprehensive business strategy and launch documentation:
+
+- **[📊 Executive Launch Summary](EXECUTIVE-LAUNCH-SUMMARY.md)** - Complete business overview and strategy
+- **[🧪 Comprehensive Test Plan](COMPREHENSIVE-TEST-PLAN.md)** - Complete testing framework for healthcare platform
+- **[👥 Beta Testing Program](BETA-TESTING-PROGRAM.md)** - Healthcare AI Pioneer Program structure
+- **[⚖️ Legal & Commercial Framework](LEGAL-COMMERCIAL-FRAMEWORK.md)** - MOUs, SLAs, BAAs, and compliance templates
+- **[💼 Business Model Refinement](BUSINESS-MODEL-REFINEMENT.md)** - Pricing tiers, revenue streams, and market strategy
+- **[🗺️ Implementation Roadmap](IMPLEMENTATION-ROADMAP.md)** - 90-day launch timeline with milestones and KPIs
 
 ## 🚀 Features
 
